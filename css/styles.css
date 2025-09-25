@@ -343,9 +343,8 @@ img {
 
 /* ---------- Breadcrumb ---------- */
 .breadcrumb {
-  margin: .6rem .6rem 0;
+  margin: 5.6rem .6rem 0;
   padding: .4rem .8rem;
-  font-size: var(--fs-sm);
 }
 
 .breadcrumb ol {
