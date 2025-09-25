@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Streamflix — Your modern streaming UI</title>
+  <meta name="description" content="Projet scolaire - Interface type Netflix en glassmorphism, responsive, multi-thèmes, animations avancées.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Skip link for accessibility -->
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <!-- Header -->
+  <header id="appHeader" class="header glass sticky">
+    <div class="header__left">
+      <button class="btn btn--icon" id="menuToggle" aria-label="Ouvrir le menu">
+        <span class="icon">☰</span>
+      </button>
+      <a href="#" class="logo">Stream<span>flix</span></a>
+      <nav class="nav" aria-label="Navigation principale">
+        <button class="nav__tab is-active" data-target="#home" aria-controls="home" role="tab" aria-selected="true">Accueil</button>
+        <button class="nav__tab" data-target="#trending" aria-controls="trending" role="tab">Tendances</button>
+        <button class="nav__tab" data-target="#new" aria-controls="new" role="tab">Nouveautés</button>
+        <div class="nav__indicator" aria-hidden="true"></div>
+      </nav>
+    </div>
+    <div class="header__right">
+      <div class="theme-switcher" role="group" aria-label="Changer de thème">
+        <button class="chip" data-theme="dark" aria-pressed="true">Sombre</button>
+        <button class="chip" data-theme="light">Clair</button>
+        <button class="chip" data-theme="sepia">Cinéma</button>
+      </div>
+      <label class="search">
+        <span class="visually-hidden">Rechercher un film</span>
+        <input id="searchInput" type="search" placeholder="Rechercher..." />
+        <span class="icon">🔍</span>
+      </label>
+      <button id="profilBtn" class="btn btn--icon" aria-label="Profil">
+        JL
+      </button>
+    </div>
+  </header>
+
+  <!-- Collapsible mobile menu -->
+  <aside id="mobileMenu" class="drawer" aria-hidden="true">
+    <nav class="drawer__nav">
+      <a href="#home" class="drawer__link">Accueil</a>
+      <a href="#trending" class="drawer__link">Tendances</a>
+      <a href="#new" class="drawer__link">Nouveautés</a>
+    </nav>
+  </aside>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb glass" aria-label="fil d'Ariane">
+    <ol>
+      <li><a href="#home">Accueil</a></li>
+      <li aria-current="page" id="breadcrumbCurrent">Hero</li>
+    </ol>
+  </div>
+
+  <!-- Hero with parallax layers -->
+  <section id="home" class="hero" aria-label="Mise en avant">
+    <div class="hero__layer hero__layer--back"></div>
+    <div class="hero__layer hero__layer--mid"></div>
+    <div class="hero__layer hero__layer--front glass">
+      <div class="hero__content">
+        <h1 class="hero__title">Regardez sans limites.</h1>
+        <p class="hero__subtitle">Un design moderne, fluide et accessible — inspiré de Netflix, propulsé par CSS.</p>
+        <picture>
+          <source type="image/webp">
+          <img alt="Visuel de la série mise en avant" class="hero__poster" />
+        </picture>
+      </div>
+    </div>
+  </section>
+
+  <main id="main">
+    <!-- Section: Trending with tabs indicator sync -->
+    <section id="trending" class="section">
+      <div class="section__head">
+        <h2 class="section__title">Tendances</h2>
+        <div class="tabs glass" role="tablist" aria-label="Catégories tendances">
+          <button class="tab is-active" data-filter="all" aria-selected="true">Tout</button>
+          <button class="tab" data-filter="action">Action</button>
+          <button class="tab" data-filter="drama">Drame</button>
+          <button class="tab" data-filter="scifi">Sci‑Fi</button>
+          <div class="tabs__indicator" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="row grid" id="trendingGrid" aria-live="polite">
+        <!-- Skeletons -->
+        <div class="card skeleton" aria-hidden="true"></div>
+        <div class="card skeleton" aria-hidden="true"></div>
+        <div class="card skeleton" aria-hidden="true"></div>
+        <div class="card skeleton" aria-hidden="true"></div>
+        <div class="card skeleton" aria-hidden="true"></div>
+        <div class="card skeleton" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- Section: New -->
+    <section id="new" class="section">
+      <div class="section__head">
+        <h2 class="section__title">Nouveautés</h2>
+      </div>
+      <div class="row grid" id="newGrid">
+        <div class="card skeleton" aria-hidden="true"></div>
+        <div class="card skeleton" aria-hidden="true"></div>
+        <div class="card skeleton" aria-hidden="true"></div>
+        <div class="card skeleton" aria-hidden="true"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <nav aria-label="Pied de page" class="footer__col">
+        <a href="#" class="link">FAQ</a>
+        <a href="#" class="link">Assistance</a>
+        <a href="#" class="link">Conditions</a>
+      </nav>
+      <div class="footer__col">
+        <p>© 2025 Streamflix.</p>
+        <small>By Jade</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Movie Details Modal -->
+  <div id="movieModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+    <div class="modal__backdrop" data-close="true"></div>
+    <div class="modal__panel glass" role="document">
+      <button class="modal__close btn btn--icon" aria-label="Fermer la fenêtre" data-close="true">✕</button>
+      <div class="modal__content">
+        <div class="modal__header">
+          <h3 id="modalTitle" class="modal__title">Titre du film</h3>
+          <span class="badge" id="modalGenre">GENRE</span>
+        </div>
+        <p id="modalDesc" class="modal__meta">Année • Note</p>
+        <div class="modal__actions">
+          <button class="btn btn--primary" id="playTrailerBtn">▶ Bande annonce</button>
+          <button class="btn btn--ghost">＋ Ma liste</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
